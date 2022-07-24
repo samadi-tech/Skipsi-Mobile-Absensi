@@ -1,14 +1,32 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View, Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   Berita,
   MenuBottom,
   MenuTop,
   StoryItems,
 } from '../../components/Components';
+import {setPosting} from '../../redux/action';
 import {colors} from '../../utils/colors';
 
-const Home = () => {
+const Home = ({navigation}) => {
+  const home = useSelector(state => state.homeReduser.posting);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    axios
+      .get('http://10.0.2.2:8000/api/posting')
+      .then(function (response) {
+        dispatch(setPosting(response.data.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [dispatch]);
+
   return (
     <View style={styles.container}>
       <MenuTop
@@ -47,15 +65,18 @@ const Home = () => {
             left: 0,
           }}>
           <StoryItems />
-          <Berita />
-          <Berita />
-          <Berita />
-          <Berita />
-          <Berita />
-          <Berita />
+          {home.map((post, index) => {
+            return (
+              <Berita
+                key={post.id}
+                posting={post.posting}
+                nama={post.penulis}
+              />
+            );
+          })}
         </View>
       </ScrollView>
-      <MenuBottom />
+      <MenuBottom navigation={navigation} />
     </View>
   );
 };
@@ -63,7 +84,7 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#F1F1F1'},
+  container: {flex: 1, backgroundColor: '#F1F1F1', paddingBottom: 70},
   header: {
     color: colors.putih,
     fontSize: 17,

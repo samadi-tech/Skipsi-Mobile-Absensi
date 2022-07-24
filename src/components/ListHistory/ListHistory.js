@@ -7,11 +7,11 @@ const ListHistory = ({nama, npm, keterangan, matakuliah, kelas}) => {
   return (
     <View style={styles.container}>
       <View style={styles.icon}>
-        <IconMenu />
+        <IconMenu type="Entypo" name="mail" size={25} color={colors.biru} />
       </View>
       <View style={styles.list}>
         <Text style={styles.text}>
-          Mahasiswa dengan nama {nama} npm {npm} {keterangan} matakuliah{' '}
+          Mahasiswa dengan nama {nama} npm {npm} {keterangan} matakuliah
           {matakuliah} kelas {kelas}.
         </Text>
       </View>
@@ -40,9 +40,9 @@ const styles = StyleSheet.create({
   },
   list: {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     flex: 1,
-    backgroundColor: colors.backgroundColor,
+    backgroundColor: colors.putih,
   },
   text: {fontSize: 11, color: colors.text},
 });

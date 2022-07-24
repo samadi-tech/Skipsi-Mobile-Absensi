@@ -7,7 +7,7 @@ const SpashScreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.replace('MainApp');
-    }, 10000);
+    }, 1000);
   }, [navigation]);
   return (
     <View style={styles.container}>

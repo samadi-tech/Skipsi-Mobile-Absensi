@@ -3,10 +3,22 @@ import React from 'react';
 import {MenuTop} from '../../components/Components';
 import {colors} from '../../utils/colors';
 
-const Tentang = () => {
+const Tentang = ({navigation}) => {
+  function onPress() {
+    navigation.goBack();
+  }
   return (
     <View style={styles.container}>
-      <MenuTop title="Tentang" />
+      <MenuTop
+        title="Tentang"
+        type="FontAwesome"
+        name="chevron-left"
+        size={25}
+        color={colors.putih}
+        onPress={() => {
+          onPress();
+        }}
+      />
       <View
         style={{
           backgroundColor: colors.biru,

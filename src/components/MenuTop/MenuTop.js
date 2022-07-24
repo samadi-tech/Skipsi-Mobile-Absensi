@@ -3,11 +3,11 @@ import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import {colors} from '../../utils/colors';
 import IconMenu from '../items/IconMenu/IconMenu';
 
-const MenuTop = ({title, ...data}) => {
+const MenuTop = ({title, onPress, ...data}) => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={colors.biru} />
-      <IconMenu {...data} />
+      <IconMenu {...data} onPress={onPress} />
       <Text style={styles.title}>{title}</Text>
       <View style={styles.icon}>
         <IconMenu type="Entypo" name="user" size={25} color={colors.putih} />

@@ -1,29 +1,45 @@
 import axios from 'axios';
-import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import {ListHistory, MenuBottom, MenuTop} from '../../components/Components';
+import React, {useEffect} from 'react';
+import {Alert, ScrollView, StyleSheet, View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {ListHistory, MenuTop} from '../../components/Components';
+import {setHistory} from '../../redux/action';
+import {colors} from '../../utils/colors';
 
-const History = () => {
-  const [Absensi, setAbsensi] = useState([]);
+const History = ({navigation}) => {
+  const history = useSelector(state => state.absensiReduser.history);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axios
       .get('http://10.0.2.2:8000/api/absensi/')
       .then(function (response) {
-        setAbsensi(response.data.data);
+        dispatch(setHistory(response.data.data));
       })
       .catch(function (error) {
-        console.log(error);
+        Alert.alert('Error', 'Data gagal di ambil');
       });
-  });
+  }, [dispatch]);
 
+  function onPress() {
+    navigation.goBack();
+  }
   return (
     <View style={styles.container}>
-      <MenuTop title="History" />
+      <MenuTop
+        title="History"
+        type="FontAwesome"
+        name="chevron-left"
+        size={25}
+        color={colors.putih}
+        onPress={() => {
+          onPress();
+        }}
+      />
       <ScrollView
         style={{flex: 1, padding: 5}}
         showsVerticalScrollIndicator={false}>
-        {Absensi.map(absen => {
+        {history.map(absen => {
           return (
             <ListHistory
               key={absen.id}

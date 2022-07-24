@@ -1,7 +1,12 @@
 import {combineReducers} from 'redux';
 
-const initLogin = {};
-const initHome = {};
+const initProfil = {
+  isLogin: true,
+};
+
+const initHome = {
+  posting: [],
+};
 
 const initAbsensi = {
   title: 'Absensi Sistem Informasi',
@@ -12,9 +17,26 @@ const initAbsensi = {
     matakuliah: '',
     keterangan: '',
   },
+  history: [],
 };
 
-const loginReduser = (state = initLogin, action) => {
+const profilReduser = (state = initProfil, action) => {
+  if (action.type === 'SET_TOMBOL') {
+    return {
+      ...state,
+      [action.inputType]: action.inputValue,
+    };
+  }
+  return state;
+};
+
+const homeReduser = (state = initHome, action) => {
+  if (action.type === 'SET_POSTING') {
+    return {
+      ...state,
+      posting: action.data,
+    };
+  }
   return state;
 };
 
@@ -28,16 +50,18 @@ const absensiReduser = (state = initAbsensi, action) => {
       },
     };
   }
-  return state;
-};
-
-const homeReduser = (state = initHome, action) => {
+  if (action.type === 'SET_HISTORY') {
+    return {
+      ...state,
+      history: action.data,
+    };
+  }
   return state;
 };
 
 const reducer = combineReducers({
   absensiReduser,
-  loginReduser,
+  profilReduser,
   homeReduser,
 });
 export default reducer;

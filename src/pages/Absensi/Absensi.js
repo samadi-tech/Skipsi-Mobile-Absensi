@@ -4,15 +4,21 @@ import {FormAbsensi, MenuTop, Sponsor} from '../../components/Components';
 import IconMenu from '../../components/items/IconMenu/IconMenu';
 import {colors} from '../../utils/colors';
 
-const Absensi = () => {
+const Absensi = ({navigation}) => {
+  function onPress() {
+    navigation.goBack();
+  }
   return (
     <View style={styles.container}>
       <MenuTop
-        title="Insan Pembangunan"
+        title="Absensi"
         type="FontAwesome"
         name="chevron-left"
         size={25}
         color={colors.putih}
+        onPress={() => {
+          onPress();
+        }}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{backgroundColor: colors.biru, height: 200, padding: 10}}>

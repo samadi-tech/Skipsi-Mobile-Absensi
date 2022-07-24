@@ -5,6 +5,15 @@ import Absensi from './Absensi/Absensi';
 import History from './History/History';
 import Bantuan from './Bantuan/bantuan';
 import Tentang from './Tentang/Tentang';
-import Akun from './Akun/akun';
+import Profil from './Profil/Profil';
 
-export {Home, SplashScreen, Posting, Absensi, History, Bantuan, Tentang, Akun};
+export {
+  Home,
+  SplashScreen,
+  Posting,
+  Absensi,
+  History,
+  Bantuan,
+  Tentang,
+  Profil,
+};

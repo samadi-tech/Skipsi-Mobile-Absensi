@@ -3,10 +3,22 @@ import React from 'react';
 import {MenuTop} from '../../components/Components';
 import {colors} from '../../utils/colors';
 
-const Posting = () => {
+const Posting = ({navigation}) => {
+  function onPress() {
+    navigation.goBack();
+  }
   return (
     <View style={styles.container}>
-      <MenuTop title="Tentang" />
+      <MenuTop
+        title="Insan Pembangunan"
+        type="FontAwesome"
+        name="chevron-left"
+        size={25}
+        color={colors.putih}
+        onPress={() => {
+          onPress();
+        }}
+      />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
@@ -29,6 +41,7 @@ const Posting = () => {
             halaman Postingan
           </Text>
         </View>
+
         <View
           style={{backgroundColor: colors.putih, marginTop: 10, padding: 10}}>
           <Text

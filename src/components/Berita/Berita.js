@@ -1,16 +1,24 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {Card} from 'react-native-paper';
-import {colors, PRIMARY, TEXT, WHITE} from '../../utils/colors';
+import {StyleSheet, Text, View} from 'react-native';
+import {colors} from '../../utils/colors';
 
-const Berita = () => {
+const Berita = ({nama, posting}) => {
   return (
     <View style={styles.container}>
       <View style={styles.akun}>
         <View style={styles.profil}></View>
-        <Text style={styles.nama}>ADI NUGROHO</Text>
+        <Text style={styles.nama}>{nama}</Text>
       </View>
       <View style={styles.berita}></View>
+      <Text
+        style={{
+          marginTop: 3,
+          fontSize: 12,
+          color: colors.text,
+          fontWeight: '300',
+        }}>
+        {posting}
+      </Text>
     </View>
   );
 };
@@ -18,7 +26,7 @@ const Berita = () => {
 export default Berita;
 
 const styles = StyleSheet.create({
-  container: {backgroundColor: 'white', paddingVertical: 3},
+  container: {backgroundColor: 'white', paddingtop: 10, paddingBottom: 20},
   cards: {
     display: 'flex',
     alignItems: 'center',
