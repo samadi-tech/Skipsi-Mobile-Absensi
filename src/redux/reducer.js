@@ -2,6 +2,12 @@ import {combineReducers} from 'redux';
 
 const initProfil = {
   isLogin: true,
+  form: {
+    npm: '',
+    username: '',
+    password: '',
+    nama: '',
+  },
 };
 
 const initHome = {
@@ -25,6 +31,15 @@ const profilReduser = (state = initProfil, action) => {
     return {
       ...state,
       [action.inputType]: action.inputValue,
+    };
+  }
+  if (action.type === 'SET_FORM') {
+    return {
+      ...state,
+      form: {
+        ...state.form,
+        [action.inputType]: action.inputValue,
+      },
     };
   }
   return state;

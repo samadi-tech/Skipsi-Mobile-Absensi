@@ -12,6 +12,7 @@ const Berita = ({nama, posting}) => {
       <View style={styles.berita}></View>
       <Text
         style={{
+          marginVertical: 5,
           marginTop: 3,
           fontSize: 12,
           color: colors.text,
